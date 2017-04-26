@@ -10,15 +10,10 @@
 
   <name>pyx</name>
 
-  <scm>
-    <url>https://github.com/ajanata/PretendYoureXyzzy</url>
-    <connection>scm:git:ssh://git@github.com/ajanata/PretendYoureXyzzy.git</connection>
-  </scm>
-
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
-  
+
   <repositories>
     <repository>
       <id>hibernatesqlite-maven</id>
@@ -190,30 +185,10 @@
           <stopKey>STOP</stopKey>
         </configuration>
       </plugin>
-
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>buildnumber-maven-plugin</artifactId>
-        <version>1.4</version>
-        <executions>
-          <execution>
-            <phase>validate</phase>
-            <goals>
-              <goal>create</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <doCheck>true</doCheck>
-          <doUpdate>true</doUpdate>
-          <revisionOnScmFailure>0</revisionOnScmFailure>
-          <shortRevisionLength>7</shortRevisionLength>
-        </configuration>
-      </plugin>
     </plugins>
     <pluginManagement>
       <plugins>
-        <!--This plugin's configuration is used to store Eclipse m2e settings 
+        <!--This plugin's configuration is used to store Eclipse m2e settings
           only. It has no influence on the Maven build itself. -->
         <plugin>
           <groupId>org.eclipse.m2e</groupId>
