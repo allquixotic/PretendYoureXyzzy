@@ -12,12 +12,15 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.wagon.http.ssl.insecure>true</maven.wagon.http.ssl.insecure>
+    <maven.wagon.http.ssl.allowall>true</maven.wagon.http.ssl.allowall>
+    <maven.wagon.http.ssl.ignore.validity.dates>true</maven.wagon.http.ssl.ignore.validity.dates>
   </properties>
 
   <repositories>
     <repository>
       <id>hibernatesqlite-maven</id>
-      <url>https://hibernate-sqlite.googlecode.com/svn/trunk/mavenrepo</url>
+      <url>https://smcnam.me/hibernate-sqlite/mavenrepo/</url>
     </repository>
   </repositories>
 
@@ -255,8 +258,19 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-core</artifactId>
-      <version>3.6.10.Final</version>
+      <version>5.2.10.Final</version>
     </dependency>
+    <dependency>
+    <groupId>com.applerao</groupId>
+    <artifactId>hibernatesqlite</artifactId>
+    <version>1.0</version>
+    <exclusions>
+        <exclusion>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate</artifactId>
+        </exclusion>
+    </exclusions>
+</dependency>
     <dependency>
       <groupId>com.googlecode.json-simple</groupId>
       <artifactId>json-simple</artifactId>
@@ -292,7 +306,7 @@
     <dependency>
       <groupId>postgresql</groupId>
       <artifactId>postgresql</artifactId>
-      <version>8.4-702.jdbc3</version>
+      <version>9.1-901.jdbc3</version>
     </dependency>
     <dependency>
       <groupId>org.easymock</groupId>
