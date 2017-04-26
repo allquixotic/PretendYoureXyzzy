@@ -44,7 +44,7 @@ import net.socialgamer.cah.data.Game;
  */
 public class Constants {
 
-  public static final int CHAT_FLOOD_MESSAGE_COUNT = 6;
+  public static final int CHAT_FLOOD_MESSAGE_COUNT = 4;
   public static final int CHAT_FLOOD_TIME = 30 * 1000;
   public static final int CHAT_MAX_LENGTH = 200;
 
@@ -54,9 +54,7 @@ public class Constants {
       add("0:0:0:0:0:0:0:1");
       add("127.0.0.1");
       // ajanata
-      add("73.202.162.31");
-      // vsTerminus
-      add("207.161.130.75");
+      add("107.218.154.202");
     }
   };
 
@@ -332,7 +330,7 @@ public class Constants {
     /**
      * TODO this probably should be pulled in from a static inside the ChatHandler.
      */
-    MESSAGE_TOO_LONG("mtl", "Messages cannot be longer than 200 characters."),
+    MESSAGE_TOO_LONG("mtl", "Messages cannot be longer than " + CHAT_MAX_LENGTH + " characters."),
     NICK_IN_USE("niu", "Nickname is already in use."),
     NO_CARD_SPECIFIED("ncs", "No card specified."),
     NO_GAME_SPECIFIED("ngs", "No game specified."),

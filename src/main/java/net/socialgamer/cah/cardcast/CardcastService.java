@@ -25,6 +25,7 @@ import javax.net.ssl.X509TrustManager;
 
 import net.socialgamer.cah.cardcast.CardcastModule.CardcastCardId;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.json.simple.JSONArray;
@@ -139,7 +140,8 @@ public class CardcastService {
         cacheMissingSet(setId);
         return null;
       }
-      final CardcastDeck deck = new CardcastDeck(name, setId, description);
+      final CardcastDeck deck = new CardcastDeck(StringEscapeUtils.escapeXml11(name), setId,
+          StringEscapeUtils.escapeXml11(description));
 
       // load up the cards
       final JSONArray blacks = (JSONArray) cards.get("calls");
@@ -155,8 +157,8 @@ public class CardcastService {
             final String text = StringUtils.join(strs, "____");
             final int pick = strs.size() - 1;
             final int draw = (pick >= 3 ? pick - 1 : 0);
-            final CardcastBlackCard card = new CardcastBlackCard(cardIdProvider.get(), text, draw,
-                pick, setId);
+            final CardcastBlackCard card = new CardcastBlackCard(cardIdProvider.get(),
+                StringEscapeUtils.escapeXml11(text), draw, pick, setId);
             deck.getBlackCards().add(card);
           }
         }
@@ -171,6 +173,10 @@ public class CardcastService {
             final List<String> strs = new ArrayList<String>(texts.size());
             for (final Object o : texts) {
               final String cardCastString = (String) o;
+              if (cardCastString.isEmpty()) {
+                // skip blank segments
+                continue;
+              }
               final StringBuilder pyxString = new StringBuilder();
 
               // Cardcast's recommended format is to not capitalize the first letter
@@ -186,8 +192,12 @@ public class CardcastService {
               strs.add(pyxString.toString());
             }
             final String text = StringUtils.join(strs, "");
-            final CardcastWhiteCard card = new CardcastWhiteCard(cardIdProvider.get(), text, setId);
-            deck.getWhiteCards().add(card);
+            // don't add blank cards, they don't do anything
+            if (!text.isEmpty()) {
+              final CardcastWhiteCard card = new CardcastWhiteCard(cardIdProvider.get(),
+                  StringEscapeUtils.escapeXml11(text), setId);
+              deck.getWhiteCards().add(card);
+            }
           }
         }
       }
