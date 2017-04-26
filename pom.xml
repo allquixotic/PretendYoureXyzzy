@@ -344,4 +344,10 @@
       <scope>runtime</scope>
     </dependency>
   </dependencies>
+
+  <profiles>
+  	<profile>
+  		<id>openshift</id>
+  	</profile>
+  </profiles>
 </project>
