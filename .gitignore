@@ -7,3 +7,4 @@ src/main/java/net/socialgamer/cah/util/RealShadowBannedStringProvider.java
 .settings/org.eclipse.jdt.core.prefs
 .classpath
 WebContent/js/cah.constants.js
+deploy.sh
